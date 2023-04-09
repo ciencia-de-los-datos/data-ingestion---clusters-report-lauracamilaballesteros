@@ -14,7 +14,7 @@ import pandas as pd
 
 import re
 
-#Sustituir los espacios en blanco en uno solo
+#Sustituir los espacios en blanco en uno solo .
 def sustituir_espacio(texto):
   pattern = re.compile(r'\s+')
   texto = re.sub(pattern = pattern, repl= ' ',string = texto)
