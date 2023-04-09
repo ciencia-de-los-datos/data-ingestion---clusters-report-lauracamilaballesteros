@@ -25,6 +25,7 @@ def sustituir_espacio(texto):
 def sustituir_porcentaje(texto):
   pattern = re.compile(r'(\d+),(\d+)\s%')
   texto = re.sub(pattern=pattern, repl=r'\1.\2', string=texto)
+  texto = float(texto)
   return texto
 
 
