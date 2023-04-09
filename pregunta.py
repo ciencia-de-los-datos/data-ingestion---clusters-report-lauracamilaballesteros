@@ -14,11 +14,17 @@ import pandas as pd
 
 import re
 
- #Sustituir los espacios en blanco en uno solo
+#Sustituir los espacios en blanco en uno solo
 def sustituir_espacio(texto):
   pattern = re.compile(r'\s+')
   texto = re.sub(pattern = pattern, repl= ' ',string = texto)
   texto = re.sub(r'\.', repl= '',string = texto)
+  return texto
+
+#Funcion para limpiar los datos de porcentaje
+def sustituir_porcentaje(texto):
+  pattern = re.compile(r'(\d+),(\d+)\s%')
+  texto = re.sub(pattern=pattern, repl=r'\1.\2', string=texto)
   return texto
 
 
@@ -36,5 +42,7 @@ def ingest_data():
     df=df.dropna().reset_index(drop=True)
     
     df['principales_palabras_clave'] = df['principales_palabras_clave'].apply(sustituir_espacio)
+    
+    df['porcentaje_de_palabras_clave'] = df['porcentaje_de_palabras_clave'].apply(sustituir_porcentaje)
 
     return df
